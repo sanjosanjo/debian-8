@@ -1,0 +1,1 @@
+# scaleway-debian-8-install-cheatsheet
