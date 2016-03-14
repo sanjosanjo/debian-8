@@ -16,7 +16,7 @@ byobu
 ```
 
 ## Firewall
-- https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
+https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
 
 ```bash
 apt install ufw
@@ -221,8 +221,14 @@ apt install libcurl4-openssl-dev
 apt install unzip
 ```
 
+## git
+```bash
+apt install git
+```
+
 ## Backup-Manager
 http://documentation.online.net/fr/serveur-dedie/sauvegarde/sauvegarde-dedibackup#backup_manager_gnulinux
+
 ```bash
 wget https://github.com/sukria/Backup-Manager/archive/master.zip -O backup-manager.zip
 unzip backup-manager.zip
@@ -242,6 +248,45 @@ chmod +x /etc/cron.daily/backup-manager
 
 ## Hubic
 http://blog.idneo.fr/sauvegarde-automatique-serveur-dedie-hubic-gratuit/
+
+```bash
+apt install gcc make curl libfuse-dev pkg-config libcurl4-openssl-dev libxml2-dev libssl-dev libjson-c-dev libmagic-dev
+
+git clone https://github.com/TurboGit/hubicfuse.git
+cd hubicfuse
+./configure
+make
+make install
+
+./hubic_token
+
+# client_id (the app's id): api_hubic_Zs8CBdHrPogP5sKiHV
+# client_secret (the app's secret): 8qvJXPIAh3rEMtS6sVpiAd3nNhauaMgwUfc2M5Ie
+# redirect_uri (declared at app's creation): http://localhost/
+
+# For the scope -what you authorize your app to do-, enter characters as suggested
+# in parenthesis, or just hit return if you don't need the item authorized.
+# Get account usage (r): r
+# Get all published links in one call (r): r
+# Get OpenStack credentials, eg. access to your files (r): r
+# Send activation email (w): w
+# Add new/Get/Delete published link (wrd): wrd
+
+# user_login (the e-mail you used to subscribe): mail@domaine.com
+# user_pwd (your hubiC's main password):
+
+# Success!
+
+# # Here is what your app needs to connect to hubiC:
+# client_id=api_hubic_Zs8CBdHrPogP5sKiHV
+# client_secret=8qvJXPIAh3rEMtS6sVpiAd3nNhauaMgwUfc2M5Ie
+# refresh_token=CkSRrxzMU9T8pmpxgahmmGJVpQ06cFj0HCdnPz7GFhCRd
+
+nano /root/.hubicfuse    # on copie les 3 variables dans ce fichier
+mkdir /mnt/hubic
+modprobe fuse
+hubicfuse /mnt/hubic -o noauto_cache,sync_read,allow_other
+```
 
 ## Rescue
 https://www.scaleway.com/docs/perform-rescue-action-on-my-server/
