@@ -96,7 +96,7 @@ apt update
 apt install mysql-server
 ```
 
-## PHP-FPM + MySQL + GD + Imagick + PostgreSQL + SQLite3
+## PHP-FPM + GD + Imagick + PostgreSQL + SQLite3
 ```bash
 apt install php7.0-fpm mysql-server php7.0-gd php7.0-imagick php7.0-mysql php7.0-pgsql php7.0-sqlite3
 ```
