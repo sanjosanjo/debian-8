@@ -98,7 +98,7 @@ apt install mysql-server
 
 ## PHP-FPM + GD + Imagick + PostgreSQL + SQLite3
 ```bash
-apt install php7.0-fpm mysql-server php7.0-gd php7.0-imagick php7.0-mysql php7.0-pgsql php7.0-sqlite3
+apt install php7.0-fpm php7.0-gd php7.0-imagick php7.0-mysql php7.0-pgsql php7.0-sqlite3
 ```
 
 ## nginx
@@ -215,6 +215,33 @@ apt install libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms
 ```bash
 apt install libcurl4-openssl-dev
 ```
+
+## unzip
+```bash
+apt install unzip
+```
+
+## Backup-Manager
+http://documentation.online.net/fr/serveur-dedie/sauvegarde/sauvegarde-dedibackup#backup_manager_gnulinux
+```bash
+wget https://github.com/sukria/Backup-Manager/archive/master.zip -O backup-manager.zip
+unzip backup-manager.zip
+cd Backup-Manager-master/
+make install
+cp /usr/local/share/backup-manager/backup-manager.conf.tpl /etc/backup-manager.conf
+
+nano /etc/backup-manager.conf
+nano /etc/cron.daily/backup-manager
+
+#!/bin/sh
+test -x /usr/local/sbin/backup-manager || exit 0
+/usr/local/sbin/backup-manager
+
+chmod +x /etc/cron.daily/backup-manager
+```
+
+## Hubic
+http://blog.idneo.fr/sauvegarde-automatique-serveur-dedie-hubic-gratuit/
 
 ## Rescue
 https://www.scaleway.com/docs/perform-rescue-action-on-my-server/
