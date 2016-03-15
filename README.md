@@ -246,46 +246,24 @@ test -x /usr/local/sbin/backup-manager || exit 0
 chmod +x /etc/cron.daily/backup-manager
 ```
 
-## Hubic
-http://blog.idneo.fr/sauvegarde-automatique-serveur-dedie-hubic-gratuit/
+## Rclone
+http://nogues.pro/blog/backup-hubic-duplicity-rsync.html
+http://rclone.org/hubic/
 
 ```bash
-apt install gcc make curl libfuse-dev pkg-config libcurl4-openssl-dev libxml2-dev libssl-dev libjson-c-dev libmagic-dev
+wget http://downloads.rclone.org/rclone-v1.28-linux-amd64.zip
+unzip rclone-v1.28-linux-amd64.zip
+cd rclone-v1.28-linux-amd64
+cp rclone /usr/sbin/
+chmod 755 /usr/sbin/rclone
 
-git clone https://github.com/TurboGit/hubicfuse.git
-cd hubicfuse
-./configure
-make
-make install
+rclone config
 
-./hubic_token
+# For browser auth
+apt install lynx
+lynx http://127.0.0.1:53682
 
-# client_id (the app's id): api_hubic_Zs8CBdHrPogP5sKiHV
-# client_secret (the app's secret): 8qvJXPIAh3rEMtS6sVpiAd3nNhauaMgwUfc2M5Ie
-# redirect_uri (declared at app's creation): http://localhost/
-
-# For the scope -what you authorize your app to do-, enter characters as suggested
-# in parenthesis, or just hit return if you don't need the item authorized.
-# Get account usage (r): r
-# Get all published links in one call (r): r
-# Get OpenStack credentials, eg. access to your files (r): r
-# Send activation email (w): w
-# Add new/Get/Delete published link (wrd): wrd
-
-# user_login (the e-mail you used to subscribe): mail@domaine.com
-# user_pwd (your hubiC's main password):
-
-# Success!
-
-# # Here is what your app needs to connect to hubiC:
-# client_id=api_hubic_Zs8CBdHrPogP5sKiHV
-# client_secret=8qvJXPIAh3rEMtS6sVpiAd3nNhauaMgwUfc2M5Ie
-# refresh_token=CkSRrxzMU9T8pmpxgahmmGJVpQ06cFj0HCdnPz7GFhCRd
-
-nano /root/.hubicfuse    # on copie les 3 variables dans ce fichier
-mkdir /mnt/hubic
-modprobe fuse
-hubicfuse /mnt/hubic -o noauto_cache,sync_read,allow_other
+rclone /my/directory remote:remote-dir
 ```
 
 ## Rescue
