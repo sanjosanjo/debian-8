@@ -197,7 +197,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
   sudo apt-key add -
 
 apt update
-apt install postgresql-9.5 postgresql-contrib-9.5 postgresql-server-dev-9.5
+apt install postgresql-9.5 postgresql-contrib-9.5 postgresql-server-dev-9.5 postgresql-9.5-postgis-2.2
 ```
 
 ## Python libs
