@@ -1,4 +1,4 @@
-# Scaleway Debian 8 install cheatsheet
+# Debian 8 install cheatsheet
 
 ## Update
 ```bash
