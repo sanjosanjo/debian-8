@@ -248,6 +248,7 @@ BM_TARBALL_TARGETS[2]="/home"
 BM_TARBALL_TARGETS[3]="/var/www"
 
 export BM_MYSQL_ADMINPASS="secret"
+export BM_MYSQL_DBEXCLUDE="information_schema mysql performance_schema"
 
 export BM_UPLOAD_METHOD="ftp"
 
