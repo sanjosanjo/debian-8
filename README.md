@@ -255,6 +255,7 @@ export BM_UPLOAD_METHOD="ftp"
 export BM_UPLOAD_FTP_USER="secret"
 export BM_UPLOAD_FTP_PASSWORD="secret"
 export BM_UPLOAD_FTP_HOSTS="secret"
+export BM_UPLOAD_FTP_DESTINATION="/"
 
 nano /etc/cron.daily/backup-manager
 
