@@ -21,18 +21,18 @@ https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-uf
 ```bash
 apt install ufw
 
-# https://community.scaleway.com/t/how-to-configures-iptables-with-input-rules-with-dynamic-nbd/303/21
 nano /etc/default/ufw
 IPV6=no
-DEFAULT_INPUT_POLICY="ACCEPT"
 
-nano /etc/ufw/after.rules
-# Add before the final COMMIT line:
--A ufw-reject-input -j DROP
+ufw disable
+ufw enable
 
-ufw logging off
+ufw default deny incoming
+ufw default allow outgoing
+
 ufw allow ssh
 ufw allow http
+
 ufw show added
 ufw enable
 ufw status
@@ -86,7 +86,7 @@ deb http://packages.dotdeb.org jessie all
 deb-src http://packages.dotdeb.org jessie all
 
 wget https://www.dotdeb.org/dotdeb.gpg
-sudo apt-key add dotdeb.gpg
+apt-key add dotdeb.gpg
 
 apt update
 ```
@@ -128,6 +128,8 @@ python get-pip.py
 
 ## virtualenvwrapper
 ```bash
+pip install virtualenvwrapper
+
 nano ~/.bashrc
 
 # virtualenvwrapper
@@ -177,14 +179,17 @@ apt install clamav clamav-freshclam
 
 ## Elasticsearch
 ```bash
-wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 nano /etc/apt/sources.list
 
 # Elasticsearch
 deb http://packages.elastic.co/elasticsearch/1.7/debian stable main
 
 apt update
-apt install openjdk-8-jre-headless elasticsearch
+
+# apt install openjdk-8-jre-headless  # 2016-03-30: was not found
+apt install openjdk-7-jre-headless
+apt install elasticsearch
 ```
 
 ## PostgreSQL
@@ -193,8 +198,7 @@ nano /etc/apt/sources.list.d/pgdg.list
 
 deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main
 
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
-  sudo apt-key add -
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
 apt update
 apt install postgresql-9.5 postgresql-contrib-9.5 postgresql-server-dev-9.5 postgresql-9.5-postgis-2.2
@@ -237,6 +241,21 @@ make install
 cp /usr/local/share/backup-manager/backup-manager.conf.tpl /etc/backup-manager.conf
 
 nano /etc/backup-manager.conf
+
+export BM_ARCHIVE_METHOD="tarball-incremental mysql pgsql"
+
+BM_TARBALL_TARGETS[2]="/home"
+BM_TARBALL_TARGETS[3]="/var/www"
+
+export BM_MYSQL_ADMINPASS="secret"
+export BM_MYSQL_DBEXCLUDE="information_schema"
+
+export BM_UPLOAD_METHOD="ftp"
+
+export BM_UPLOAD_FTP_USER="secret"
+export BM_UPLOAD_FTP_PASSWORD="secret"
+export BM_UPLOAD_FTP_HOSTS="secret"
+
 nano /etc/cron.daily/backup-manager
 
 #!/bin/sh
@@ -244,6 +263,8 @@ test -x /usr/local/sbin/backup-manager || exit 0
 /usr/local/sbin/backup-manager
 
 chmod +x /etc/cron.daily/backup-manager
+
+/usr/local/sbin/backup-manager
 ```
 
 ## Rclone
