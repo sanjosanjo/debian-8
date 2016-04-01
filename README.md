@@ -355,6 +355,16 @@ location /munin/ {
 service nginx reload
 ```
 
-## TODO
-- munin
-- ZNC
+## ZNC
+```bash
+wget http://znc.in/releases/znc-latest.tar.gz
+tar -xzvf znc-latest.tar.gz
+cd znc*
+./configure
+make
+make install
+
+znc --makeconf
+
+ufw allow 6697
+```
