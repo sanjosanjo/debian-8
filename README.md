@@ -211,6 +211,26 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 
 apt update
 apt install postgresql-9.5 postgresql-contrib-9.5 postgresql-server-dev-9.5 postgresql-9.5-postgis-2.2
+
+nano /etc/postgresql/9.5/main/pg_hba.conf
+local   all         all                               trust     # replace peer with trust
+
+service postgresql restart
+
+psql -U postgres
+ALTER USER postgres with password 'secret';
+
+nano /etc/postgresql/9.5/main/pg_hba.conf
+local   all         postgres                          md5       # replace trust with md5
+
+service postgresql restart
+
+# Create user
+su - postgres
+createuser -s spout -P
+
+# Create DB
+createdb test_db
 ```
 
 ## Python libs
@@ -258,6 +278,9 @@ BM_TARBALL_TARGETS[3]="/var/www"
 
 export BM_MYSQL_ADMINPASS="secret"
 export BM_MYSQL_DBEXCLUDE="information_schema mysql performance_schema"
+
+export BM_PGSQL_ADMINLOGIN="postgres"
+export BM_PGSQL_ADMINPASS="secret"
 
 export BM_UPLOAD_METHOD="ftp"
 
