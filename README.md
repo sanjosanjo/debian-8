@@ -15,6 +15,14 @@ byobu
 # F3: Switch between sessions
 ```
 
+## SSH
+```bash
+nano /etc/ssh/sshd_config
+Port 10022
+
+service ssh restart
+```
+
 ## Firewall
 https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
 
@@ -30,7 +38,8 @@ ufw enable
 ufw default deny incoming
 ufw default allow outgoing
 
-ufw allow ssh
+# ufw allow ssh
+ufw allow 10022
 ufw allow http
 
 ufw show added
@@ -295,3 +304,7 @@ https://www.scaleway.com/docs/perform-rescue-action-on-my-server/
 mkdir -p /mnt/volume0
 mount /dev/nbd0 /mnt/volume0
 ```
+
+## TODO
+- munin
+- ZNC
