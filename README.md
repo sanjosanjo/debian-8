@@ -302,6 +302,7 @@ chmod +x /etc/cron.daily/backup-manager
 
 ## Rclone
 http://nogues.pro/blog/backup-hubic-duplicity-rsync.html
+
 http://rclone.org/hubic/
 
 ```bash
@@ -326,6 +327,32 @@ https://www.scaleway.com/docs/perform-rescue-action-on-my-server/
 ```bash
 mkdir -p /mnt/volume0
 mount /dev/nbd0 /mnt/volume0
+```
+
+## Munin
+https://www.howtoforge.com/tutorial/server-monitoring-with-munin-and-monit-on-debian/
+```bash
+apt install munin munin-node munin-plugins-extra
+
+nano /etc/nginx/sites-available/default
+
+# Add in server directive:
+
+location /munin/static/ {
+        alias /etc/munin/static/;
+        expires modified +1w;
+}
+
+location /munin/ {
+        # auth_basic            "Restricted";
+        # Create the htpasswd file with the htpasswd tool.
+        # auth_basic_user_file  /etc/nginx/htpasswd;
+
+        alias /var/cache/munin/www/;
+        expires modified +310s;
+}
+
+service nginx reload
 ```
 
 ## TODO
