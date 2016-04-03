@@ -321,14 +321,6 @@ lynx http://127.0.0.1:53682
 rclone /my/directory remote:remote-dir
 ```
 
-## Rescue
-https://www.scaleway.com/docs/perform-rescue-action-on-my-server/
-
-```bash
-mkdir -p /mnt/volume0
-mount /dev/nbd0 /mnt/volume0
-```
-
 ## Munin
 https://www.howtoforge.com/tutorial/server-monitoring-with-munin-and-monit-on-debian/
 ```bash
