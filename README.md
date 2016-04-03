@@ -380,3 +380,11 @@ cd jpegoptim-1.4.3
 make
 make install
 ```
+
+## GeoIP
+```bash
+apt install geoip-bin geoip-database
+cd /usr/share/GeoIP
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+gunzip GeoLiteCity.dat.gz
+```
