@@ -368,3 +368,23 @@ znc --makeconf
 
 ufw allow 6697
 ```
+
+## OptiPNG
+```bash
+wget http://downloads.sourceforge.net/project/optipng/OptiPNG/optipng-0.7.5/optipng-0.7.5.tar.gz
+tar -xvzf optipng-0.7.5.tar.gz
+cd optipng-0.7.5
+./configure
+make
+make install
+```
+
+## Jpegoptim
+```bash
+wget http://www.kokkonen.net/tjko/src/jpegoptim-1.4.3.tar.gz
+tar -xvzf jpegoptim-1.4.3.tar.gz
+cd jpegoptim-1.4.3
+./configure
+make
+make install
+```
