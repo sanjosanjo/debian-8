@@ -78,7 +78,7 @@ dpkg-reconfigure exim4-config
 3. IP-addresses: ENTER
 4. Other destinations: ENTER
 5. Domains to relay mail for: ENTER
-6.  Machines to relay mail for: ENTER
+6. Machines to relay mail for: ENTER
 7. Keep number of DNS-queries minimal: NO
 8. Delivery method: mbox format
 9. Split configuration into small files: NO
@@ -127,6 +127,21 @@ service nginx reload
 
 chown www-data:www-data /var/www
 chmod g+w /var/www
+
+# Gzip
+nano /etc/nginx/nginx.conf
+# Uncomment:
+gzip on;
+gzip_disable "msie6";
+
+gzip_vary on;
+gzip_proxied any;
+gzip_comp_level 6;
+gzip_buffers 16 8k;
+gzip_http_version 1.1;
+gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+service nginx reload
 ```
 
 ## pip
@@ -247,6 +262,11 @@ apt install libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms
 ### CURL
 ```bash
 apt install libcurl4-openssl-dev
+```
+
+### lxml
+```bash
+apt install libxml2-dev libxslt1-dev
 ```
 
 ## unzip
