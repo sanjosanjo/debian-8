@@ -413,3 +413,26 @@ gunzip GeoLiteCity.dat.gz
 ```bash
 apt install supervisor
 ```
+
+## TeamSpeak
+https://www.abyssproject.net/2015/04/installation-dun-serveur-teamspeak-3-sous-debian-8-jessie/
+
+```bash
+adduser teamspeak
+
+su - teamspeak
+
+wget http://dl.4players.de/ts/releases/3.0.12.3/teamspeak3-server_linux_amd64-3.0.12.3.tar.bz2
+tar -xvjf teamspeak3-server_linux_amd64-3.0.12.3.tar.bz2
+cd teamspeak3-server_linux_amd64/
+./ts3server_startscript.sh start
+
+crontab -e
+@reboot cd /home/teamspeak/teamspeak3-server_linux_amd64 && ./ts3server_startscript.sh start
+
+# https://support.teamspeakusa.com/index.php?/Knowledgebase/Article/View/44/16/which-ports-does-the-teamspeak-3-server-use
+
+ufw allow 9987/udp
+ufw allow 30033/tcp
+ufw allow 10011/tcp
+```
