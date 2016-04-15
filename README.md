@@ -269,6 +269,11 @@ apt install libcurl4-openssl-dev
 apt install libxml2-dev libxslt1-dev
 ```
 
+### Cryptography
+```bash
+apt install libffi-dev
+```
+
 ## unzip
 ```bash
 apt install unzip
