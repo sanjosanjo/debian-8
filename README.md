@@ -441,3 +441,29 @@ ufw allow 9987/udp
 ufw allow 30033/tcp
 ufw allow 10011/tcp
 ```
+
+## HTTPS / Let's encrypt
+https://memo-linux.com/configurer-le-serveur-web-nginx-en-https-avec-letsencrypt-sous-debian-jessie/
+
+```bash
+cd /opt
+git clone https://github.com/letsencrypt/letsencrypt
+cd letsencrypt
+
+service nginx stop
+
+ufw allow https
+
+./letsencrypt-auto certonly -d example.com --rsa-key-size 4096
+
+openssl dhparam -out /etc/ssl/private/dhparams.pem 4096
+
+# I have done the following directly in the sites-available domain
+# nano /etc/nginx/nginx.conf
+
+# ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
+# ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+# ssl_prefer_server_ciphers on;
+# ssl_session_cache shared:SSL:10m;
+# ssl_dhparam /etc/ssl/private/dhparams.pem;
+```
