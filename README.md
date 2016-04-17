@@ -141,6 +141,9 @@ gzip_buffers 16 8k;
 gzip_http_version 1.1;
 gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 
+nano /etc/nginx/nginx.conf
+server_tokens off;
+
 service nginx reload
 ```
 
@@ -374,6 +377,8 @@ service nginx reload
 
 ## ZNC
 ```bash
+apt install libicu-dev
+
 wget http://znc.in/releases/znc-latest.tar.gz
 tar -xzvf znc-latest.tar.gz
 cd znc*
