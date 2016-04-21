@@ -326,6 +326,26 @@ test -x /usr/local/sbin/backup-manager || exit 0
 chmod +x /etc/cron.daily/backup-manager
 
 /usr/local/sbin/backup-manager
+
+# Fix incremental.bin not uploaded on FTP
+# http://ranaivoarivaojl.com/post/85120151628/backup-manager-incremental-snapshots
+nano /usr/local/bin/backup-manager-upload
+
+# Search:
+while (<$g_root_dir/*$date*>) {
+    push @{$ra_files}, $_;
+}
+}
+
+# Replace:
+while (<$g_root_dir/*$date*>) {
+    push @{$ra_files}, $_;
+}
+while (<$g_root_dir/*incremental*>) {
+    push @{$ra_files}, $_;
+}
+}
+
 ```
 
 ## Rclone
