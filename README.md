@@ -329,6 +329,7 @@ chmod +x /etc/cron.daily/backup-manager
 
 # Fix incremental.bin not uploaded on FTP
 # http://ranaivoarivaojl.com/post/85120151628/backup-manager-incremental-snapshots
+# https://skyduino.wordpress.com/2015/06/05/memo-du-sysadmin-les-sauvegardes-et-backup-manager/
 nano /usr/local/bin/backup-manager-upload
 
 # Search:
