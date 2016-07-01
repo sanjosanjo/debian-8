@@ -174,11 +174,11 @@ apt install libncurses5-dev libncursesw5-dev libreadline6-dev
 apt install libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
 apt install libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
 
-wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
-tar -xvzf Python-3.5.1.tgz
-cd Python-3.5.1/
+wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
+tar -xvzf Python-3.5.2.tgz
+cd Python-3.5.2/
 
-./configure --prefix=/opt/python-3.5.1
+./configure --prefix=/opt/python-3.5.2
 make
 make install
 ```
