@@ -347,6 +347,9 @@ while (<$g_root_dir/*incremental*>) {
 }
 }
 
+# Fix /usr/bin/backup-manager-purge not found
+ln -s /usr/local/bin/backup-manager-purge /usr/bin/backup-manager-purge
+
 ```
 
 ## Rclone
