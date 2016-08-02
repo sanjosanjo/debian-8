@@ -288,7 +288,7 @@ apt install git
 ```
 
 ## Backup-Manager
-http://documentation.online.net/fr/serveur-dedie/sauvegarde/sauvegarde-dedibackup#backup_manager_gnulinux
+https://documentation.online.net/fr/dedicated-server/tutorials/backup/configure-backup/start
 
 ```bash
 wget https://github.com/sukria/Backup-Manager/archive/master.zip -O backup-manager.zip
