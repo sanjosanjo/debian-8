@@ -11,6 +11,9 @@ apt upgrade
 apt install byobu
 byobu
 
+# UTF-8 Weird characters
+/usr/lib/byobu/include/toggle-utf8
+
 # F2: New session
 # F3: Switch between sessions
 ```
