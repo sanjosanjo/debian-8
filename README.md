@@ -476,7 +476,31 @@ ufw allow 10011/tcp
 
 ## HTTPS / Let's encrypt
 https://memo-linux.com/configurer-le-serveur-web-nginx-en-https-avec-letsencrypt-sous-debian-jessie/
+https://certbot.eff.org/#debianjessie-nginx
 
+# certbot
+```bash
+nano /etc/apt/sources.list
+
+deb http://ftp.debian.org/debian jessie-backports main
+
+apt update
+apt install certbot -t jessie-backports
+
+nano /etc/nginx/sites-available/example.com
+
+location ~ /.well-known {
+    allow all;
+    root /var/www;
+}
+
+nginx -t
+service nginx reload
+
+certbot certonly --webroot -w /var/www/ -d example.com -d www.example.com
+```
+
+# letsencrypt-auto
 ```bash
 cd /opt
 git clone https://github.com/letsencrypt/letsencrypt
