@@ -478,8 +478,9 @@ ufw allow 10011/tcp
 https://memo-linux.com/configurer-le-serveur-web-nginx-en-https-avec-letsencrypt-sous-debian-jessie/
 https://certbot.eff.org/#debianjessie-nginx
 
-### certbot
 ```bash
+ufw allow https
+
 nano /etc/apt/sources.list
 
 deb http://ftp.debian.org/debian jessie-backports main
@@ -498,19 +499,6 @@ nginx -t
 service nginx reload
 
 certbot certonly --webroot -w /var/www/ -d example.com -d www.example.com --rsa-key-size 4096
-```
-
-### letsencrypt-auto
-```bash
-cd /opt
-git clone https://github.com/letsencrypt/letsencrypt
-cd letsencrypt
-
-service nginx stop
-
-ufw allow https
-
-./letsencrypt-auto certonly -d example.com --rsa-key-size 4096
 
 openssl dhparam -out /etc/ssl/private/dhparams.pem 4096
 
