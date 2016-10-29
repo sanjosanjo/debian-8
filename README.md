@@ -490,14 +490,21 @@ ufw allow https
 
 openssl dhparam -out /etc/ssl/private/dhparams.pem 4096
 
-# I have done the following directly in the sites-available domain
-# nano /etc/nginx/nginx.conf
+nano /etc/nginx/nginx.conf
 
-# ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
-# ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-# ssl_prefer_server_ciphers on;
-# ssl_session_cache shared:SSL:10m;
-# ssl_dhparam /etc/ssl/private/dhparams.pem;
+##
+# SSL Settings
+##
+
+#ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+#ssl_prefer_server_ciphers on;
+
+ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_prefer_server_ciphers on;
+ssl_session_cache shared:SSL:10m;
+ssl_dhparam /etc/ssl/private/dhparams.pem;
+add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
 ```
 
 ## Composer
