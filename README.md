@@ -302,7 +302,7 @@ cp /usr/local/share/backup-manager/backup-manager.conf.tpl /etc/backup-manager.c
 
 nano /etc/backup-manager.conf
 
-export BM_ARCHIVE_METHOD="tarball-incremental mysql pgsql"
+export BM_ARCHIVE_METHOD="tarball mysql pgsql"
 
 BM_TARBALL_TARGETS[2]="/home"
 BM_TARBALL_TARGETS[3]="/var/www"
@@ -329,26 +329,6 @@ test -x /usr/local/sbin/backup-manager || exit 0
 chmod +x /etc/cron.daily/backup-manager
 
 /usr/local/sbin/backup-manager
-
-# Fix incremental.bin not uploaded on FTP
-# http://ranaivoarivaojl.com/post/85120151628/backup-manager-incremental-snapshots
-# https://skyduino.wordpress.com/2015/06/05/memo-du-sysadmin-les-sauvegardes-et-backup-manager/
-nano /usr/local/bin/backup-manager-upload
-
-# Search:
-while (<$g_root_dir/*$date*>) {
-    push @{$ra_files}, $_;
-}
-}
-
-# Replace:
-while (<$g_root_dir/*$date*>) {
-    push @{$ra_files}, $_;
-}
-while (<$g_root_dir/*incremental*>) {
-    push @{$ra_files}, $_;
-}
-}
 
 # Fix /usr/bin/backup-manager-purge not found
 ln -s /usr/local/bin/backup-manager-purge /usr/bin/backup-manager-purge
