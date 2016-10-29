@@ -499,6 +499,10 @@ nginx -t
 service nginx reload
 
 certbot certonly --webroot -w /var/www/ -d example.com -d www.example.com --rsa-key-size 4096
+certbot renew --dry-run
+
+crontab -e
+0 */12 * * * certbot renew --quiet
 
 openssl dhparam -out /etc/ssl/private/dhparams.pem 4096
 
