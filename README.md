@@ -497,7 +497,7 @@ location ~ /.well-known {
 nginx -t
 service nginx reload
 
-certbot certonly --webroot -w /var/www/ -d example.com -d www.example.com
+certbot certonly --webroot -w /var/www/ -d example.com -d www.example.com --rsa-key-size 4096
 ```
 
 ### letsencrypt-auto
