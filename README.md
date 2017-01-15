@@ -253,6 +253,12 @@ createuser -s spout -P
 # Create DB
 createdb test_db
 
+# Drop all tables
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+
 # Restore backup
 psql -d database_name -U spout -f backup.sql
 ```
