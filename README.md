@@ -252,6 +252,9 @@ createuser -s spout -P
 
 # Create DB
 createdb test_db
+
+# Restore backup
+psql -d database_name -U spout -f backup.sql
 ```
 
 ## Python libs
