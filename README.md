@@ -533,3 +533,6 @@ wget -O - https://deb.goaccess.io/gnugpg.key | apt-key add -
 apt update
 apt install goaccess
 ```
+
+## netdata
+https://github.com/firehol/netdata/wiki/Installation
