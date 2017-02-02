@@ -87,20 +87,14 @@ dpkg-reconfigure exim4-config
 9. Split configuration into small files: NO
 10. Root and postmaster mail recipient: ENTER
 
-## Dotdeb
-https://www.dotdeb.org/instructions/
+## DEB.SURY.ORG
+https://deb.sury.org/
 
 ```bash
-nano /etc/apt/sources.list
-
-# Dotdeb
-deb http://packages.dotdeb.org jessie all
-deb-src http://packages.dotdeb.org jessie all
-
-wget https://www.dotdeb.org/dotdeb.gpg
-apt-key add dotdeb.gpg
-
-apt update
+apt-get install apt-transport-https lsb-release ca-certificates
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+apt-get update
 ```
 
 ## MySQL
@@ -110,7 +104,7 @@ apt install mysql-server
 
 ## PHP-FPM + GD + Imagick + PostgreSQL + SQLite3
 ```bash
-apt install php7.0-fpm php7.0-gd php7.0-imagick php7.0-mysql php7.0-pgsql php7.0-sqlite3 php7.0-mbstring php7.0-xml php7.0-intl
+apt install php7.1-fpm php7.1-gd php7.1-imagick php7.1-mysql php7.1-pgsql php7.1-sqlite3 php7.1-mbstring php7.1-xml php7.1-intl
 ```
 
 ## nginx
