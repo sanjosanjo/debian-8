@@ -503,7 +503,7 @@ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 ssl_prefer_server_ciphers on;
 ssl_session_cache shared:SSL:10m;
 ssl_dhparam /etc/ssl/private/dhparams.pem;
-add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
+add_header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload";
 ```
 
 ## Composer
