@@ -530,3 +530,19 @@ apt install goaccess
 
 ## netdata
 https://github.com/firehol/netdata/wiki/Installation
+
+## NTP
+https://www.guillaume-leduc.fr/configurer-client-ntp-jessie-systemd.html
+
+```bash
+timedatectl
+
+nano /etc/systemd/timesyncd.conf
+# uncomment Servers=0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
+
+systemctl start systemd-timesyncd.service
+systemctl enable systemd-timesyncd.service
+
+timedatectl
+```
+
