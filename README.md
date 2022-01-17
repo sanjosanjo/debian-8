@@ -1,7 +1,5 @@
 # Debian 8 install cheatsheet
 
-Debian 9 version : https://github.com/spout/debian-9-install-cheatsheet
-
 ## Update
 ```bash
 apt update
